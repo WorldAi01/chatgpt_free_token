@@ -141,3 +141,29 @@ completion = openai.chat.completions.create(
     ],
 )
 print(completion.choices[0].message.content)
+
+# Should output: Hello there! How can I assist you today?
+```
+
+### OpenAI Official Node Library
+
+> [openai-node](https://github.com/openai/openai-node)
+
+Using the official `node` library as an example: Note that you need to pass the /v1 suffix.
+
+```js
+const { Configuration, OpenAIApi } = require("openai");
+
+const configuration = new Configuration({
+  apiKey: "Your apikey",
+  basePath: "https://worldai.hk/v1"
+});
+const openai = new OpenAIApi(configuration);
+
+const chatCompletion = await openai.createChatCompletion({
+  model: "gpt-3.5-turbo",
+  messages: [{role: "user", content: "Hello world"}],
+});
+
+console.log(chatCompletion.data.choices[0].message.content);
+```
